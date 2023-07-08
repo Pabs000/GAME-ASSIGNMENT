@@ -20,6 +20,10 @@ let direction = 'up';
 // Initial direction of the snake at the start of the game.
 let gameOver = false;
 
+let itemX = 5;
+let itemY = 5;
+let itemCollected = false;
+//Variables defined for the item position & status
 
 // Added event listener to capture arrow key presses
 document.addEventListener('keydown', handleKeyPress);
@@ -51,9 +55,14 @@ function drawGame() {
     return; // Stop the game loop
   }
   moveSnake();
+  checkItemCollection();
+  generateItemPosition(); // Generate item position
   drawSnake();
+  drawItem();
+
   setTimeout(drawGame, 1000 / speed);
 }
+
 // setTimeOut to adjust game speed(difficulty)
 // 1000 Millaseconds = 1 second 
 
@@ -84,6 +93,12 @@ function moveSnake() {
   //If any condition is true, Game ends. (Die)
   }
   
+  function checkItemCollection() {
+    if (headX === itemX && headY === itemY && !itemCollected) {
+      itemCollected = true;
+      // Additional logic when the item is collected
+    }
+  }
 
 function drawSnake(){
     ctx.fillStyle = 'blue';
@@ -91,6 +106,19 @@ function drawSnake(){
 }
 //drawing the snake as a rectangle(head x and y multiplied against tileCount to position in Tiles) 
 
+function drawItem(){
+  ctx.fillStyle = 'purple';
+  ctx.fillRect(itemX * tileCount, itemY * tileCount, tileSize, tileSize);
+}
+
+
+function generateItemPosition() {
+  itemX = Math.floor(Math.random() * tileCount);
+  itemY = Math.floor(Math.random() * tileCount);
+  itemCollected = false;
+}
+//MATH RANDOM generates a value between 0-1. Then it multiplies the random decimal value by TileCount
+//which gives random value between 0 and 'tilecount'. This is then a random index in the canvas.
 
 drawGame();
 //Called initially to kickstart the game loop. Initiating the continious drawing. 
