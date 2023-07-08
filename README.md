@@ -1,2 +1,3 @@
 # GAME-ASSIGNMENT
 
+The Snake Game is a classic game where you control a snake and try to collect items without running into the walls or yourself. In this implementation, the game is drawn on an HTML canvas element. The snake's position is represented by a head (blue square) that moves based on keyboard inputs (WASD keys). The goal is to collect purple items that appear randomly on the canvas. When an item is collected, a new one spawns. The game speed can be adjusted by changing the "speed" variable. 

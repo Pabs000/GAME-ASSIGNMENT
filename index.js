@@ -50,7 +50,7 @@ function handleKeyPress(event) {
 //game loop for drawing GAME
 //GameFunctions*
 function drawGame() {
-  clearScreen();
+  clearScreen(); 
   if (gameOver) {
     console.log("Game Over");
     return; // Stop the game loop
@@ -62,10 +62,11 @@ function drawGame() {
   drawItem();
 
   setTimeout(drawGame, 1000 / speed);
+  // setTimeOut to adjust game speed(difficulty)
+// 1000 Millaseconds = 1 second 
 }
 
-// setTimeOut to adjust game speed(difficulty)
-// 1000 Millaseconds = 1 second 
+
 
 
 function clearScreen(){
