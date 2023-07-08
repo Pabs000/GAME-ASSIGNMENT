@@ -104,15 +104,22 @@ function drawSnake(){
     ctx.fillStyle = 'blue';
     ctx.fillRect(headX * tileCount, headY * tileCount, tileSize,tileSize);
 }
-//drawing the snake as a rectangle(head x and y multiplied against tileCount to position in Tiles) 
-
-function drawItem(){
+//Drawing the snake as a rectangle(head x and y multiplied against tileCount)in order
+//to translate the tile-based coordinates of the snake's head to pixel-based coordinates on the canvas.
+function drawItem() {
   ctx.fillStyle = 'purple';
-  ctx.fillRect(itemX * tileCount, itemY * tileCount, tileSize, tileSize);
+  ctx.fillRect(itemX * tileSize, itemY * tileSize, tileSize, tileSize);
 }
-
+//itemX * tileSize calculates the actual pixel position of the item on the canvas based on the tile size.
+// It takes the X-coordinate of the item (itemX) and multiplies it by the size of each tile (tileSize). 
+//This calculation gives the X-position in pixels where the item should be drawn on the canvas.
 
 function generateItemPosition() {
+  if (!itemCollected) {
+    // Only generate a new item position if the previous item has been collected
+    return;
+  }
+  
   itemX = Math.floor(Math.random() * tileCount);
   itemY = Math.floor(Math.random() * tileCount);
   itemCollected = false;
