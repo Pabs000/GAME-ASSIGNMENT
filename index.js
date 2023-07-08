@@ -13,7 +13,7 @@ let tileSize = canvas.width / tileCount;
 // By dividing the Canvas.width by tileCount this determines the width
 //of each individual tile that is required to distribite the tiles 
 //withing the canvas width.
-let headX = 15;
+let headX = 5;
 let headY = 15;
 //Setting headX to 15 and headY to 15 means the snake's head will initially be positioned 
 //at the intersection of the 15th column and the 15th row on the game board.
@@ -49,6 +49,9 @@ function handleKeyPress(event) {
 
 //game loop for drawing GAME
 //GameFunctions*
+//The drawGame function nests other functions to encapsulate the various game functionalities.
+//Ensure they are executed in a specific order. This helps maintain the game's structure and organization.
+//Makes it easier to understand and modify different aspects of the game independently.
 function drawGame() {
   clearScreen(); 
   if (gameOver) {
@@ -63,17 +66,21 @@ function drawGame() {
 
   setTimeout(drawGame, 1000 / speed);
   // setTimeOut to adjust game speed(difficulty)
-// 1000 Millaseconds = 1 second 
+  // 1000 Millaseconds = 1 second 
 }
-
-
+// It starts by clearing the screen using the clearScreen function.
+//Then, it checks if the game is over, and if so, it prints a message and stops the game loop.
+// Next, it moves the snake, checks for item collection, generates a new item position, and draws 
+//the snake and the item on the canvas. Finally, it sets a timeout to call the drawGame function again after 
+//a specific time interval determined by the game speed, which controls the game's difficulty and refresh rate.
 
 
 function clearScreen(){
     ctx.fillStyle = 'orange';
     ctx.fillRect(0,0,canvas.width, canvas.height)
 }
-//COLOR OF THE DRAWING BOARD - Fill RECTANGLE where 0,0 is starting point position and covers the size of canvas Width and Height
+//COLOR OF THE DRAWING BOARD - Fill RECTANGLE where 0,0 is starting point position 
+//and covers the size of canvas Width and Height
 
 
 function moveSnake() {
