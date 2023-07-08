@@ -1,6 +1,7 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
-
+//Reference to an HTML canvas element with the id 'game'. Obtains the 2D rendering 
+//context of the canvas. Allows for drawing and manipulating graphics on the canvas.
 
 let speed = 20;
 //The value of speed is set to 20.
