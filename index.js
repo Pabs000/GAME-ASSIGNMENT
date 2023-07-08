@@ -1,13 +1,15 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
-let speed = 7;
+let speed = 5;
 
 let tileCount= 20;
-let tileSize = canvas.width / tileCount - 2;
-let headX = 10;
-let headY = 10;
-let direction = 'right'; // Initial direction of the snake
+let tileSize = canvas.width / tileCount - 5;
+let headX = 15;
+let headY = 15;
+let direction = 'up';
+// Initial direction of the snake at the start of the game.
+let gameOver = false;
 
 // Add event listener to capture arrow key presses
 document.addEventListener('keydown', handleKeyPress);
@@ -25,16 +27,21 @@ function handleKeyPress(event) {
     } else if (key === 83 && direction !== 'up') {
       direction = 'down';
     }
+    // This condition checks if the key is equal to the keycode value for 'W,A,S,D' 
+    //and if the current direction of the snake is not 'X'. 
+    //If both conditions are true, the direction is set to 'X'.
   }
-
-
 //game loop for drawing GAME
 //GameFunctions*
-function drawGame(){
-    clearScreen();
-    moveSnake();
-    drawSnake();
-    setTimeout(drawGame, 1000/ speed);
+function drawGame() {
+  clearScreen();
+  if (gameOver) {
+    console.log("Game Over");
+    return; // Stop the game loop
+  }
+  moveSnake();
+  drawSnake();
+  setTimeout(drawGame, 1000 / speed);
 }
 // setTimeOut to adjust game speed(difficulty)
 // 1000 Millaseconds = 1 second 
@@ -56,19 +63,10 @@ function moveSnake() {
       headY++;
     }
     
-    // Wrap snake around the canvas-This code block checks the position of the snake's head (headX and headY) 
-    //and wraps it around the canvas edges if it goes beyond the boundaries.Less than 0 outa bounds. 
-    if (headX < 0) {
-      headX = tileCount - 1;
-    } else if (headX >= tileCount) {
-      headX = 0;
-    }
-    
-    if (headY < 0) {
-      headY = tileCount - 1;
-    } else if (headY >= tileCount) {
-      headY = 0;
-    }
+    // Check for border collisions - OUTA BOUNDS
+  if (headX < 0 || headX >= tileCount || headY < 0 || headY >= tileCount) {
+    gameOver = true;
+  }
   }
   
 
@@ -79,4 +77,5 @@ function drawSnake(){
 //drawing the snake as a rectangle(head x and y multiplied against tileCount to position in Tiles) 
 
 drawGame();
-
+//Called initially to kickstart the game loop. Initiating the continious drawing. 
+//It also updates the game
