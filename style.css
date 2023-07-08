@@ -4,7 +4,7 @@ body    {
     background-color: black;
 }
 h1  {
-    color:rgb(123, 190, 245);
+    color: #52a6c2 ;
     text-align:center;
 }
   canvas {
@@ -16,5 +16,5 @@ h1  {
     flex-direction:column;
     justify-content:center;
     align-items: center;
-    filter: drop-shadow(15px 15px 10px rgba(72, 204, 247, 0.3)); 
+    filter: drop-shadow(8px 8px 15px #48cbf771); 
 }

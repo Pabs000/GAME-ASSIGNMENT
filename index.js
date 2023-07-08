@@ -1,8 +1,10 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
-//
-let speed = 5;
+
+let speed = 20;
+//The value of speed is set to 20.
+//The game will update and redraw the game board 20 times per second.
 let tileCount= 20;
 //Canvas is set to 400x400 pixels and the tileCount is set to 20.
 //Each tile on the game board will occupy an area of 20x20 pixels.
@@ -18,9 +20,9 @@ let direction = 'up';
 // Initial direction of the snake at the start of the game.
 let gameOver = false;
 
+
 // Added event listener to capture arrow key presses
 document.addEventListener('keydown', handleKeyPress);
-
 //WASD mapping arrow key presses - MOVEMENT
 function handleKeyPress(event) {
     const key = event.keyCode;
@@ -39,6 +41,7 @@ function handleKeyPress(event) {
     //If both conditions are true, the direction is set to 'X'.
   }
 
+
 //game loop for drawing GAME
 //GameFunctions*
 function drawGame() {
@@ -54,11 +57,13 @@ function drawGame() {
 // setTimeOut to adjust game speed(difficulty)
 // 1000 Millaseconds = 1 second 
 
+
 function clearScreen(){
     ctx.fillStyle = 'orange';
     ctx.fillRect(0,0,canvas.width, canvas.height)
 }
 //COLOR OF THE DRAWING BOARD - Fill RECTANGLE where 0,0 is starting point position and covers the size of canvas Width and Height
+
 
 function moveSnake() {
     if (direction === 'left') {
@@ -86,6 +91,8 @@ function drawSnake(){
 }
 //drawing the snake as a rectangle(head x and y multiplied against tileCount to position in Tiles) 
 
+
 drawGame();
 //Called initially to kickstart the game loop. Initiating the continious drawing. 
 //It also updates the game
+
