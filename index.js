@@ -1,20 +1,27 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
+//
 let speed = 5;
-
 let tileCount= 20;
-let tileSize = canvas.width / tileCount - 5;
+//Canvas is set to 400x400 pixels and the tileCount is set to 20.
+//Each tile on the game board will occupy an area of 20x20 pixels.
+let tileSize = canvas.width / tileCount;
+// By dividing the Canvas.width by tileCount this determines the width
+//of each individual tile that is required to distribite the tiles 
+//withing the canvas width.
 let headX = 15;
 let headY = 15;
+//Setting headX to 15 and headY to 15 means the snake's head will initially be positioned 
+//at the intersection of the 15th column and the 15th row on the game board.
 let direction = 'up';
 // Initial direction of the snake at the start of the game.
 let gameOver = false;
 
-// Add event listener to capture arrow key presses
+// Added event listener to capture arrow key presses
 document.addEventListener('keydown', handleKeyPress);
 
-// Event handler for arrow key presses
+//WASD mapping arrow key presses - MOVEMENT
 function handleKeyPress(event) {
     const key = event.keyCode;
     
@@ -27,10 +34,11 @@ function handleKeyPress(event) {
     } else if (key === 83 && direction !== 'up') {
       direction = 'down';
     }
-    // This condition checks if the key is equal to the keycode value for 'W,A,S,D' 
+    //This condition checks if the key is equal to the keycode value for 'W,A,S,D' 
     //and if the current direction of the snake is not 'X'. 
     //If both conditions are true, the direction is set to 'X'.
   }
+
 //game loop for drawing GAME
 //GameFunctions*
 function drawGame() {
@@ -62,11 +70,13 @@ function moveSnake() {
     } else if (direction === 'down') {
       headY++;
     }
-    
     // Check for border collisions - OUTA BOUNDS
   if (headX < 0 || headX >= tileCount || headY < 0 || headY >= tileCount) {
     gameOver = true;
   }
+  //Checks if the snake's head position is outside the game board boundaries 
+  //(left, right, top, or bottom) by comparing the headX and headY values with the tileCount. 
+  //If any condition is true, Game ends. (Die)
   }
   
 
